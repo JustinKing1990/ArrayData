@@ -1,0 +1,195 @@
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package biglab2_king;
+import java.util.Arrays;
+import javax.swing.*;
+public class biglab2_king {
+ 
+   /*Justin King
+    *Using a menu driven program to run multiple different variations of data input and manipulation
+    *Lab project 2
+    *Due 10/30/2018
+    */
+    public static void main(String[] args) {
+        double[] useThis = new double[20];
+            //Creates a drop down menu option
+            String[] choices = { "Input Grades", "Random Number Generator", "Average Grade", "Minimum and Maximum", "Grade Sorting"};
+    String input = (String) JOptionPane.showInputDialog(null, "What would you like to do?",
+        "Option Menu", JOptionPane.QUESTION_MESSAGE, null,
+        choices, // Array of choices
+        choices[0]); // Initial choice
+    if ("Input Grades".equals(input)){
+       grades(useThis);
+    }
+    else 
+        if ("Random Number Generator".equals(input)){
+            randomNumber(useThis);            
+        }
+        else 
+            if ("Average Grade".equals(input)){
+                gradeAverage(useThis);
+            }
+            else 
+                if ("Minimum and Maximum".equals(input)){
+                    minimumMaximum(useThis);
+                }
+                else 
+                    if ("Grade Sorting".equals(input)){
+                        gradeSorting(useThis);
+                    }
+    else JOptionPane.showMessageDialog(null, "Exiting Program", "Exit Message", JOptionPane.INFORMATION_MESSAGE);
+}
+ 
+    /**
+     *
+     * @param args
+     */
+    public static void grades(double[] args){
+                //Gathers the number of grades to be used
+        String blahinput = JOptionPane.showInputDialog(null, "How many grades will be entered?", "GradeCount", JOptionPane.INFORMATION_MESSAGE);
+        //Initializes all of the variables
+        int i = Integer.parseInt(blahinput);
+    double[] blah = new double[i];
+    double[] blahSum = new double[i];
+    double blahSumActual = 0;
+    double blahAverage = 0;
+    double max = blah[0];
+    double min = 1000;
+    
+ 
+    //Begins the loop to determine all the stuff to be used
+            for (int j = 0; j < blah.length; j++){
+                String gradeInput = JOptionPane.showInputDialog(null, "Please enter the grade required", "GradeInput", JOptionPane.INFORMATION_MESSAGE);
+                double gradeActual = Double.parseDouble(gradeInput);
+                blah[j] = gradeActual;              
+                blahSumActual += blah[j];
+                Arrays.toString(blah);
+                //determines the highest number
+                if (blah[j] > max){
+                    max = blah[j];
+                }
+                //determines the lowest number
+                if (blah[j] < min){
+                    min = blah[j];
+                }
+               }
+        
+                     
+        int j = i;
+       //Creates a dialog box with all of the information
+         JOptionPane.showMessageDialog(null, "All of the grades entered are " + Arrays.toString(blah), "Grade Information", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static double randomNumber(double[] args){
+                    String[] randomChoices = { "Yes", "No"};
+    String inputRandom = (String) JOptionPane.showInputDialog(null, "Would you like to sort the random numbers?",
+        "Sort Option", JOptionPane.QUESTION_MESSAGE, null, // Use
+                                                                        // default
+                                                                        // icon
+        randomChoices, // Array of choices
+        randomChoices[0]); // Initial choice
+    if ("No".equals(inputRandom)){
+        double[] randoArray = new double[20];
+        for (int i = 0; i < randoArray.length; i++ ){
+            double randomNum = (Math.random() * 100);
+            randoArray[i] = (int)randomNum;
+            Arrays.toString(randoArray);
+        }
+        JOptionPane.showMessageDialog(null, "The Random Number Generated are " + Arrays.toString(randoArray));
+    }
+    else{
+        double[] randoArray = new double[20];
+        for (int i = 0; i < randoArray.length; i++){
+            double randomNum = (Math.random() * 100);
+            randoArray[i] = (int)randomNum;
+            Arrays.toString(randoArray);
+        }
+        selectionSort(randoArray);
+        JOptionPane.showMessageDialog(null, "The randomly generated numbers are " + Arrays.toString(randoArray));
+        }
+    
+            double randomArray = 0;
+            return randomArray;
+}
+ 
+ 
+public static void selectionSort(double[] list) {
+    
+for (int i = 0; i < list.length - 1; i++) {
+// Find the minimum in the list[i..list.length-1]
+double currentMin = list[i];
+int currentMinIndex = i;
+ 
+for (int j = i + 1; j < list.length; j++) {
+if (currentMin > list[j]) {
+currentMin = list[j];
+currentMinIndex = j;
+}
+}
+ 
+// Swap list[i] with list[currentMinIndex] if necessary
+if (currentMinIndex != i) {
+list[currentMinIndex] = list[i];
+list[i] = currentMin;
+}
+}
+}
+ 
+public static double gradeAverage(double[] average){
+    String numberInput = JOptionPane.showInputDialog(null, "How many grades will be averaged?", "Number of Grades", JOptionPane.INFORMATION_MESSAGE);
+    int numberActual = Integer.parseInt(numberInput);
+    double[] averageArray = new double[numberActual];
+    double averageActual;
+    double gradeSum = 0;
+    for (double i: averageArray){
+        String gradeInput = JOptionPane.showInputDialog(null, "Please input a grade", "Grade Input", JOptionPane.INFORMATION_MESSAGE);
+        double gradeActual = Double.parseDouble(gradeInput);
+        int j = (int) i;
+        gradeSum += gradeActual;        
+    }
+    int gradeAverageActual = numberActual;
+    double yup = 0;
+    JOptionPane.showMessageDialog(null, "The average of the entered grades is " + (gradeSum / gradeAverageActual));
+    return yup;
+}
+ 
+ 
+public static double minimumMaximum(double[] minMax){
+    String numberInput = JOptionPane.showInputDialog(null, "How many grades will be entered", "Grade Number Input", JOptionPane.INFORMATION_MESSAGE);
+    int i = Integer.parseInt(numberInput);
+    double[] minAndMax = new double[i];
+    double max = minAndMax[0];
+    double min = 1000;
+    for (int j = 0; j < minAndMax.length; j++){
+        String gradeInput = JOptionPane.showInputDialog(null, "Please enter a grade", "Grade input", JOptionPane.INFORMATION_MESSAGE);
+        double gradeActual = Double.parseDouble(gradeInput);
+        minAndMax[j] = gradeActual;
+         if (minAndMax[j] > max){
+                    max = minAndMax[j];
+                }
+                if (minAndMax[j] < min){
+                    min = minAndMax[j];
+                }
+    }
+                JOptionPane.showMessageDialog(null, "The largest grade entered is " + max + "\n" +
+                        "The smallest grade entered is " + min, "Grade Minimum and Maximum", JOptionPane.INFORMATION_MESSAGE);
+    double yup = 0;
+    return yup;
+}
+public static void gradeSorting(double[] args){
+    String gradeNumber = JOptionPane.showInputDialog(null, "How many grades will be sorted", "Grade Count", JOptionPane.INFORMATION_MESSAGE);
+    int i = Integer.parseInt(gradeNumber);
+    double[] gradeSort = new double[i];
+    for (int j = 0; j < i; j++){
+        String gradeInput = JOptionPane.showInputDialog(null, "Please insert the grades to be sorted", "Grade Input", JOptionPane.INFORMATION_MESSAGE);
+        double k = Double.parseDouble(gradeInput);
+        gradeSort[j] = k;
+        Arrays.toString(gradeSort);
+    }
+    selectionSort(gradeSort);
+    JOptionPane.showMessageDialog(null, "All of the grades entered, and sorted are " + Arrays.toString(gradeSort), "Sorted Grades", JOptionPane.INFORMATION_MESSAGE);
+}
+}
